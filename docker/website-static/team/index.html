@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Group | Engel & Volkers - Luxury Real Estate</title>
+    <meta name="description" content="Experience luxury real estate in the Evansville area with Royal Group. Exceptional properties, unparalleled service, and local expertise.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f4f8', 100: '#d9e2ec', 200: '#bcccdc', 300: '#9fb3c8',
+                            400: '#829ab1', 500: '#627d98', 600: '#486581', 700: '#334e68',
+                            800: '#243b53', 900: '#102a43', 950: '#0a1929',
+                        },
+                        gold: {
+                            50: '#fefce8', 100: '#fef9c3', 200: '#fef08a', 300: '#fde047',
+                            400: '#facc15', 500: '#c9a227', 600: '#a78b1a', 700: '#856d14',
+                        },
+                        luxury: {
+                            cream: '#faf8f5', ivory: '#f5f3ef', charcoal: '#2d2d2d', slate: '#4a5568',
+                        },
+                    },
+                    fontFamily: {
+                        heading: ['Playfair Display', 'Georgia', 'serif'],
+                        body: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif; }
+        html { scroll-behavior: smooth; }
+    </style>
+
+    <!-- Mautic Tracking Script -->
+    <script>
+        (function(w,d,t,u,n,a,m){w['MauticTrackingObject']=n;
+            w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)},a=d.createElement(t),
+            m=d.getElementsByTagName(t)[0];a.async=1;a.src=u;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','http://192.168.0.234:8081/mtc.js','mt');
+        mt('send', 'pageview');
+    </script>
+</head>
+<body class="bg-luxury-cream text-luxury-charcoal antialiased">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="bg-primary-900 text-white py-2">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm">
+                <div class="flex items-center gap-6">
+                    <a href="tel:+18125550100" class="flex items-center gap-2 hover:text-gold-400 transition-colors">
+                        <i data-lucide="phone" class="h-4 w-4"></i>
+                        <span>(812) 555-0100</span>
+                    </a>
+                    <a href="mailto:jennifer@royalgroup-ev.com" class="hidden sm:flex items-center gap-2 hover:text-gold-400 transition-colors">
+                        <i data-lucide="mail" class="h-4 w-4"></i>
+                        <span>jennifer@royalgroup-ev.com</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-gold-400 font-medium">Engel & Volkers</span>
+                </div>
+            </div>
+        </div>
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="text-2xl font-heading font-semibold text-primary-900">
+                    <span class="text-gold-500">Royal</span> Group
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#" class="text-sm font-medium text-luxury-charcoal hover:text-gold-500 transition-colors uppercase tracking-wider">Home</a>
+                    <a href="#properties" class="text-sm font-medium text-luxury-charcoal hover:text-gold-500 transition-colors uppercase tracking-wider">Properties</a>
+                    <a href="#team" class="text-sm font-medium text-luxury-charcoal hover:text-gold-500 transition-colors uppercase tracking-wider">Our Team</a>
+                    <a href="#about" class="text-sm font-medium text-luxury-charcoal hover:text-gold-500 transition-colors uppercase tracking-wider">About</a>
+                    <a href="#testimonials" class="text-sm font-medium text-luxury-charcoal hover:text-gold-500 transition-colors uppercase tracking-wider">Testimonials</a>
+                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium tracking-wide text-white bg-gold-500 hover:bg-gold-600 transition-colors uppercase">Schedule Consultation</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-primary-900">
+                    <i data-lucide="menu" class="h-6 w-6"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[700px] flex items-center justify-center">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80');">
+            <div class="absolute inset-0 bg-gradient-to-b from-primary-900/60 via-primary-900/40 to-primary-900/70"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <p class="text-gold-400 uppercase tracking-[0.3em] text-sm mb-6 font-medium">Engel & Volkers Evansville</p>
+            <h1 class="text-5xl md:text-7xl font-heading font-medium mb-6 leading-tight">
+                Luxury Real Estate<br><span class="text-gold-400">Elevated</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-light mb-10 max-w-2xl mx-auto text-gray-200">
+                Discover exceptional properties in the Tri-State area with unparalleled service
+            </p>
+            <div class="max-w-3xl mx-auto mb-12">
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-2 flex flex-col md:flex-row gap-2">
+                    <input type="text" placeholder="Search by location, property type, or features..."
+                           class="flex-1 px-6 py-4 bg-white text-primary-900 rounded-md focus:outline-none focus:ring-2 focus:ring-gold-500 placeholder-gray-500">
+                    <button class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide text-white bg-gold-500 hover:bg-gold-600 transition-colors uppercase gap-2">
+                        <i data-lucide="search" class="h-5 w-5"></i> Search
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#properties" class="inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-white bg-gold-500 hover:bg-gold-600 transition-colors uppercase">View Properties</a>
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide border-2 border-white text-white hover:bg-white hover:text-primary-900 transition-colors uppercase">Schedule a Consultation</a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="h-8 w-8 text-white/70"></i>
+        </div>
+    </section>
+
+    <!-- Recent Activity Banner -->
+    <section class="bg-primary-900 py-4 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-8 text-white text-sm">
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    <span><strong class="text-gold-400">Just Sold:</strong> 4521 Riverside Dr - $1.2M</span>
+                </div>
+                <div class="hidden md:flex items-center gap-2">
+                    <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                    <span><strong class="text-gold-400">New Listing:</strong> 789 Oak Hill Estates - $2.1M</span>
+                </div>
+                <div class="hidden lg:flex items-center gap-2">
+                    <span class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></span>
+                    <span><strong class="text-gold-400">Under Contract:</strong> 156 Lakeview Point - $1.8M</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-gold-500 uppercase tracking-[0.2em] text-sm mb-4 font-medium">Exclusive Listings</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4">Featured Properties</h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto my-6"></div>
+                <p class="text-lg text-luxury-slate max-w-2xl mx-auto">
+                    Discover our curated selection of exceptional homes, each offering unique luxury and lifestyle opportunities.
+                </p>
+            </div>
+
+            <!-- Property Filter Tabs -->
+            <div class="flex justify-center gap-4 mb-12">
+                <button class="px-6 py-2 bg-primary-900 text-white text-sm uppercase tracking-wider">All</button>
+                <button class="px-6 py-2 bg-gray-100 text-luxury-charcoal text-sm uppercase tracking-wider hover:bg-gray-200">Luxury Homes</button>
+                <button class="px-6 py-2 bg-gray-100 text-luxury-charcoal text-sm uppercase tracking-wider hover:bg-gray-200">Waterfront</button>
+                <button class="px-6 py-2 bg-gray-100 text-luxury-charcoal text-sm uppercase tracking-wider hover:bg-gray-200">New Construction</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Property 1 -->
+                <div class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80" alt="Lakefront Estate" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-gold-500 text-white px-4 py-1 text-sm font-medium uppercase tracking-wider">Featured</div>
+                        <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 text-xs font-medium uppercase">Just Listed</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-luxury-slate text-sm mb-2">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-gold-500"></i>
+                            1234 Lakeshore Drive, Evansville
+                        </div>
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-3 group-hover:text-gold-500 transition-colors">
+                            Lakefront Estate with Private Dock
+                        </h3>
+                        <div class="flex items-center gap-6 text-sm text-luxury-slate mb-4">
+                            <span class="flex items-center gap-1"><i data-lucide="bed" class="h-4 w-4 text-gold-500"></i> 5 Beds</span>
+                            <span class="flex items-center gap-1"><i data-lucide="bath" class="h-4 w-4 text-gold-500"></i> 4.5 Baths</span>
+                            <span class="flex items-center gap-1"><i data-lucide="square" class="h-4 w-4 text-gold-500"></i> 6,500 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-2xl font-heading font-semibold text-primary-900">$2,450,000</span>
+                            <i data-lucide="arrow-right" class="h-5 w-5 text-gold-500 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 2 -->
+                <div class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80" alt="Modern Penthouse" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-gold-500 text-white px-4 py-1 text-sm font-medium uppercase tracking-wider">Featured</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-luxury-slate text-sm mb-2">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-gold-500"></i>
+                            500 Main Street PH1, Downtown
+                        </div>
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-3 group-hover:text-gold-500 transition-colors">
+                            Modern Downtown Penthouse
+                        </h3>
+                        <div class="flex items-center gap-6 text-sm text-luxury-slate mb-4">
+                            <span class="flex items-center gap-1"><i data-lucide="bed" class="h-4 w-4 text-gold-500"></i> 3 Beds</span>
+                            <span class="flex items-center gap-1"><i data-lucide="bath" class="h-4 w-4 text-gold-500"></i> 3 Baths</span>
+                            <span class="flex items-center gap-1"><i data-lucide="square" class="h-4 w-4 text-gold-500"></i> 4,200 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-2xl font-heading font-semibold text-primary-900">$1,850,000</span>
+                            <i data-lucide="arrow-right" class="h-5 w-5 text-gold-500 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 3 -->
+                <div class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80" alt="Victorian Mansion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-gold-500 text-white px-4 py-1 text-sm font-medium uppercase tracking-wider">Featured</div>
+                        <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 text-xs font-medium uppercase">Price Reduced</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-luxury-slate text-sm mb-2">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-gold-500"></i>
+                            789 Heritage Lane, Newburgh
+                        </div>
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-3 group-hover:text-gold-500 transition-colors">
+                            Historic Victorian Mansion
+                        </h3>
+                        <div class="flex items-center gap-6 text-sm text-luxury-slate mb-4">
+                            <span class="flex items-center gap-1"><i data-lucide="bed" class="h-4 w-4 text-gold-500"></i> 6 Beds</span>
+                            <span class="flex items-center gap-1"><i data-lucide="bath" class="h-4 w-4 text-gold-500"></i> 5 Baths</span>
+                            <span class="flex items-center gap-1"><i data-lucide="square" class="h-4 w-4 text-gold-500"></i> 7,800 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-2xl font-heading font-semibold text-primary-900">$1,650,000</span>
+                            <i data-lucide="arrow-right" class="h-5 w-5 text-gold-500 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 4 -->
+                <div class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Contemporary Estate" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 text-xs font-medium uppercase">Virtual Tour</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-luxury-slate text-sm mb-2">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-gold-500"></i>
+                            321 Ridge View Court, Evansville
+                        </div>
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-3 group-hover:text-gold-500 transition-colors">
+                            Contemporary Hillside Retreat
+                        </h3>
+                        <div class="flex items-center gap-6 text-sm text-luxury-slate mb-4">
+                            <span class="flex items-center gap-1"><i data-lucide="bed" class="h-4 w-4 text-gold-500"></i> 4 Beds</span>
+                            <span class="flex items-center gap-1"><i data-lucide="bath" class="h-4 w-4 text-gold-500"></i> 3.5 Baths</span>
+                            <span class="flex items-center gap-1"><i data-lucide="square" class="h-4 w-4 text-gold-500"></i> 4,800 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-2xl font-heading font-semibold text-primary-900">$1,250,000</span>
+                            <i data-lucide="arrow-right" class="h-5 w-5 text-gold-500 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 5 -->
+                <div class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&q=80" alt="Golf Course Estate" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-luxury-slate text-sm mb-2">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-gold-500"></i>
+                            456 Fairway Drive, Henderson
+                        </div>
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-3 group-hover:text-gold-500 transition-colors">
+                            Golf Course Estate Home
+                        </h3>
+                        <div class="flex items-center gap-6 text-sm text-luxury-slate mb-4">
+                            <span class="flex items-center gap-1"><i data-lucide="bed" class="h-4 w-4 text-gold-500"></i> 5 Beds</span>
+                            <span class="flex items-center gap-1"><i data-lucide="bath" class="h-4 w-4 text-gold-500"></i> 4 Baths</span>
+                            <span class="flex items-center gap-1"><i data-lucide="square" class="h-4 w-4 text-gold-500"></i> 5,200 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-2xl font-heading font-semibold text-primary-900">$975,000</span>
+                            <i data-lucide="arrow-right" class="h-5 w-5 text-gold-500 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property 6 -->
+                <div class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80" alt="Modern Farmhouse" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 text-xs font-medium uppercase">Under Contract</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-luxury-slate text-sm mb-2">
+                            <i data-lucide="map-pin" class="h-4 w-4 text-gold-500"></i>
+                            892 Country Lane, Boonville
+                        </div>
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-3 group-hover:text-gold-500 transition-colors">
+                            Luxury Modern Farmhouse
+                        </h3>
+                        <div class="flex items-center gap-6 text-sm text-luxury-slate mb-4">
+                            <span class="flex items-center gap-1"><i data-lucide="bed" class="h-4 w-4 text-gold-500"></i> 4 Beds</span>
+                            <span class="flex items-center gap-1"><i data-lucide="bath" class="h-4 w-4 text-gold-500"></i> 3 Baths</span>
+                            <span class="flex items-center gap-1"><i data-lucide="square" class="h-4 w-4 text-gold-500"></i> 3,800 sqft</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-2xl font-heading font-semibold text-primary-900">$825,000</span>
+                            <i data-lucide="arrow-right" class="h-5 w-5 text-gold-500 transform group-hover:translate-x-2 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-primary-900 bg-transparent border-2 border-primary-900 hover:bg-primary-900 hover:text-white transition-colors uppercase gap-2">
+                    View All 24 Properties <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team -->
+    <section id="team" class="py-24 bg-luxury-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-gold-500 uppercase tracking-[0.2em] text-sm mb-4 font-medium">Meet Your Experts</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4">Our Team</h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto my-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Team Member 1 - Jennifer D. Holmes -->
+                <a href="team/jennifer-holmes.html" class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="images/team/jennifer-holmes.jpg" alt="Jennifer D. Holmes" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="phone" class="h-4 w-4 text-white"></i>
+                                </span>
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="mail" class="h-4 w-4 text-white"></i>
+                                </span>
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="user" class="h-4 w-4 text-white"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-1 group-hover:text-gold-500 transition-colors">Jennifer D. Holmes</h3>
+                        <p class="text-gold-500 text-sm uppercase tracking-wider mb-2">Global Real Estate Advisor</p>
+                        <p class="text-luxury-slate text-sm">Dual Licensed TX & CA</p>
+                        <p class="text-gold-500 text-xs mt-3 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">View Profile</p>
+                    </div>
+                </a>
+
+                <!-- Team Member 2 - Adavien Holmes -->
+                <a href="team/adavien-holmes.html" class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="images/team/adavien-holmes.jpg" alt="Adavien Holmes" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="phone" class="h-4 w-4 text-white"></i>
+                                </span>
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="mail" class="h-4 w-4 text-white"></i>
+                                </span>
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="user" class="h-4 w-4 text-white"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-1 group-hover:text-gold-500 transition-colors">Adavien Holmes</h3>
+                        <p class="text-gold-500 text-sm uppercase tracking-wider mb-2">Real Estate Agent</p>
+                        <p class="text-luxury-slate text-sm">DFW Native | License #0768350</p>
+                        <p class="text-gold-500 text-xs mt-3 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">View Profile</p>
+                    </div>
+                </a>
+
+                <!-- Team Member 3 - Jill Govan -->
+                <a href="team/jill-govan.html" class="bg-white shadow-lg overflow-hidden group cursor-pointer hover:shadow-xl transition-shadow">
+                    <div class="relative h-80 overflow-hidden">
+                        <img src="images/team/jill-govan.jpg" alt="Jill Govan" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4 flex justify-center gap-3">
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="phone" class="h-4 w-4 text-white"></i>
+                                </span>
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="mail" class="h-4 w-4 text-white"></i>
+                                </span>
+                                <span class="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                                    <i data-lucide="user" class="h-4 w-4 text-white"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-heading font-medium text-primary-900 mb-1 group-hover:text-gold-500 transition-colors">Jill Govan</h3>
+                        <p class="text-gold-500 text-sm uppercase tracking-wider mb-2">Advisor</p>
+                        <p class="text-luxury-slate text-sm">Fort Worth | License #787969</p>
+                        <p class="text-gold-500 text-xs mt-3 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">View Profile</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="relative z-10">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Royal Group Office" class="w-full h-[600px] object-cover shadow-xl">
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 w-64 h-64 border-4 border-gold-500 -z-0"></div>
+                    <div class="absolute top-8 -left-8 bg-primary-900 text-white p-8 z-20">
+                        <div class="text-4xl font-heading font-bold text-gold-400 mb-1">15+</div>
+                        <div class="text-sm uppercase tracking-wider">Years Experience</div>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-gold-500 uppercase tracking-[0.2em] text-sm mb-4 font-medium">About Royal Group</p>
+                    <h2 class="text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4">
+                        Your Trusted Partner in <span class="text-gold-500">Luxury Real Estate</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gold-500 my-6"></div>
+                    <p class="text-luxury-slate text-lg leading-relaxed mb-6">
+                        At Royal Group, we believe that finding your dream home should be an exceptional experience. With over 15 years of expertise in the luxury real estate market, we bring unparalleled knowledge, dedication, and personal service to every client relationship.
+                    </p>
+                    <p class="text-luxury-slate text-lg leading-relaxed mb-8">
+                        As part of the prestigious Engel & Volkers network, we combine local expertise with global reach, offering you access to an exclusive portfolio of premium properties and a worldwide network of discerning buyers and sellers.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center">
+                                <i data-lucide="award" class="h-6 w-6 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Award-Winning</h3>
+                                <p class="text-sm text-luxury-slate">Top 1% of agents nationally</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center">
+                                <i data-lucide="users" class="h-6 w-6 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Dedicated Team</h3>
+                                <p class="text-sm text-luxury-slate">10 licensed agents</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center">
+                                <i data-lucide="home" class="h-6 w-6 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Local Expertise</h3>
+                                <p class="text-sm text-luxury-slate">Tri-State specialists</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center">
+                                <i data-lucide="globe" class="h-6 w-6 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Global Network</h3>
+                                <p class="text-sm text-luxury-slate">Engel & Volkers worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-white bg-gold-500 hover:bg-gold-600 transition-colors uppercase">Learn More About Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-primary-900 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <p class="text-gold-400 uppercase tracking-[0.2em] text-sm mb-4 font-medium">By The Numbers</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-medium text-white mb-4">A Track Record of Excellence</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-heading font-bold text-gold-400 mb-2">$150M+</div>
+                    <div class="text-white/80 text-sm uppercase tracking-wider">Total Sales Volume</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-heading font-bold text-gold-400 mb-2">487</div>
+                    <div class="text-white/80 text-sm uppercase tracking-wider">Happy Clients</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-heading font-bold text-gold-400 mb-2">24</div>
+                    <div class="text-white/80 text-sm uppercase tracking-wider">Active Listings</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl md:text-5xl font-heading font-bold text-gold-400 mb-2">98%</div>
+                    <div class="text-white/80 text-sm uppercase tracking-wider">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Sales -->
+    <section class="py-24 bg-luxury-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-gold-500 uppercase tracking-[0.2em] text-sm mb-4 font-medium">Proven Results</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4">Recently Sold</h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto my-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="relative group">
+                    <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?w=600&q=80" alt="Sold Property" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-primary-900/60 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="bg-gold-500 text-white px-4 py-1 text-sm font-medium uppercase mb-4 inline-block">Sold</div>
+                            <h3 class="text-xl font-heading mb-2">4521 Riverside Drive</h3>
+                            <p class="text-2xl font-heading font-bold text-gold-400">$1,275,000</p>
+                            <p class="text-sm mt-2 text-gray-300">Sold in 14 days</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Sold Property" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-primary-900/60 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="bg-gold-500 text-white px-4 py-1 text-sm font-medium uppercase mb-4 inline-block">Sold</div>
+                            <h3 class="text-xl font-heading mb-2">892 Oak Hill Lane</h3>
+                            <p class="text-2xl font-heading font-bold text-gold-400">$925,000</p>
+                            <p class="text-sm mt-2 text-gray-300">$50K over asking</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&q=80" alt="Sold Property" class="w-full h-64 object-cover">
+                    <div class="absolute inset-0 bg-primary-900/60 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <div class="bg-gold-500 text-white px-4 py-1 text-sm font-medium uppercase mb-4 inline-block">Sold</div>
+                            <h3 class="text-xl font-heading mb-2">156 Lakeview Point</h3>
+                            <p class="text-2xl font-heading font-bold text-gold-400">$1,850,000</p>
+                            <p class="text-sm mt-2 text-gray-300">Record neighborhood sale</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="text-gold-500 uppercase tracking-[0.2em] text-sm mb-4 font-medium">Client Stories</p>
+                <h2 class="text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4">What Our Clients Say</h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto my-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-luxury-cream p-8 relative">
+                    <div class="absolute top-6 right-6"><i data-lucide="quote" class="h-12 w-12 text-gold-500/20"></i></div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                    </div>
+                    <p class="text-luxury-slate text-lg leading-relaxed mb-6 italic">
+                        "Jennifer and her team made our dream home a reality. Her expertise in the luxury market and attention to detail was exceptional. We couldn't have asked for a better advocate."
+                    </p>
+                    <div class="pt-6 border-t border-gold-500/20">
+                        <div class="font-heading font-medium text-primary-900">Michael & Sarah Thompson</div>
+                        <div class="text-sm text-luxury-slate">Purchased $1.8M home in Henderson</div>
+                    </div>
+                </div>
+                <div class="bg-luxury-cream p-8 relative">
+                    <div class="absolute top-6 right-6"><i data-lucide="quote" class="h-12 w-12 text-gold-500/20"></i></div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                    </div>
+                    <p class="text-luxury-slate text-lg leading-relaxed mb-6 italic">
+                        "She sold our home above asking price in just two weeks! Her marketing strategy was brilliant and her professionalism was outstanding throughout the entire process."
+                    </p>
+                    <div class="pt-6 border-t border-gold-500/20">
+                        <div class="font-heading font-medium text-primary-900">David Chen</div>
+                        <div class="text-sm text-luxury-slate">Sold home in Evansville - $50K over asking</div>
+                    </div>
+                </div>
+                <div class="bg-luxury-cream p-8 relative">
+                    <div class="absolute top-6 right-6"><i data-lucide="quote" class="h-12 w-12 text-gold-500/20"></i></div>
+                    <div class="flex gap-1 mb-4">
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                        <i data-lucide="star" class="h-5 w-5 text-gold-500 fill-current"></i>
+                    </div>
+                    <p class="text-luxury-slate text-lg leading-relaxed mb-6 italic">
+                        "Relocating from Chicago seemed daunting until we found Royal Group. Jennifer understood exactly what we needed and made our transition seamless. Highly recommend!"
+                    </p>
+                    <div class="pt-6 border-t border-gold-500/20">
+                        <div class="font-heading font-medium text-primary-900">The Richardson Family</div>
+                        <div class="text-sm text-luxury-slate">Relocated from Chicago to Newburgh</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-luxury-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div>
+                    <p class="text-gold-500 uppercase tracking-[0.2em] text-sm mb-4 font-medium">Get In Touch</p>
+                    <h2 class="text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4">
+                        Let's Find Your <span class="text-gold-500">Dream Home</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-gold-500 my-6"></div>
+                    <p class="text-luxury-slate text-lg leading-relaxed mb-8">
+                        Ready to begin your luxury real estate journey? Whether you're buying, selling, or exploring options, we're here to help.
+                    </p>
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="phone" class="h-5 w-5 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Phone</h3>
+                                <a href="tel:+18125550100" class="text-luxury-slate hover:text-gold-500">(812) 555-0100</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="mail" class="h-5 w-5 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Email</h3>
+                                <a href="mailto:jennifer@royalgroup-ev.com" class="text-luxury-slate hover:text-gold-500">jennifer@royalgroup-ev.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="map-pin" class="h-5 w-5 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Office</h3>
+                                <p class="text-luxury-slate">123 Main Street, Suite 100<br>Evansville, IN 47708</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-gold-500/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="clock" class="h-5 w-5 text-gold-500"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-primary-900 mb-1">Hours</h3>
+                                <p class="text-luxury-slate">Mon-Fri: 9am-6pm<br>Sat: 10am-4pm | Sun: By Appt</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-gold-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <i data-lucide="bot" class="h-6 w-6 text-gold-500"></i>
+                            <span class="font-medium text-primary-900">AI-Powered Assistance</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full">Online</span>
+                        </div>
+                        <p class="text-sm text-luxury-slate">
+                            Our AI assistant is available 24/7 to answer questions, schedule showings, and provide instant property information.
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white p-8 shadow-xl">
+                    <form id="contact-form">
+                        <h3 class="text-2xl font-heading font-medium text-primary-900 mb-6">Request a Consultation</h3>
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-primary-900 mb-2">First Name *</label>
+                                <input type="text" name="firstName" required class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-primary-900 mb-2">Last Name *</label>
+                                <input type="text" name="lastName" required class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-primary-900 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-primary-900 mb-2">Phone</label>
+                            <input type="tel" name="phone" class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-primary-900 mb-2">I'm Interested In</label>
+                            <select name="propertyInterest" class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none bg-white">
+                                <option value="">Select an option</option>
+                                <option value="buying">Buying a Home</option>
+                                <option value="selling">Selling My Home</option>
+                                <option value="both">Both Buying & Selling</option>
+                                <option value="investing">Investment Properties</option>
+                                <option value="valuation">Home Valuation</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-primary-900 mb-2">Price Range</label>
+                            <select name="priceRange" class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none bg-white">
+                                <option value="">Select a range</option>
+                                <option value="500-750">$500,000 - $750,000</option>
+                                <option value="750-1m">$750,000 - $1,000,000</option>
+                                <option value="1m-1.5m">$1,000,000 - $1,500,000</option>
+                                <option value="1.5m-2m">$1,500,000 - $2,000,000</option>
+                                <option value="2m+">$2,000,000+</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-primary-900 mb-2">Message</label>
+                            <textarea name="message" rows="4" placeholder="Tell us about your real estate goals..." class="w-full px-4 py-3 border border-gray-300 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-white bg-gold-500 hover:bg-gold-600 transition-colors uppercase">Send Message</button>
+                        <p class="text-xs text-luxury-slate mt-4 text-center">
+                            By submitting, you agree to receive communications from Royal Group.
+                        </p>
+                    </form>
+                    <div id="form-success" class="hidden text-center py-12">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="check" class="h-8 w-8 text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-heading font-medium text-primary-900 mb-2">Thank You!</h3>
+                        <p class="text-luxury-slate">We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <div class="text-2xl font-heading font-semibold mb-4"><span class="text-gold-400">Royal</span> Group</div>
+                    <p class="text-gray-400 mb-6">Your trusted partner in luxury real estate. Engel & Volkers affiliate providing exceptional service in the Tri-State area.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                            <i data-lucide="facebook" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                            <i data-lucide="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                            <i data-lucide="linkedin" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-500 transition-colors">
+                            <i data-lucide="youtube" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-medium mb-4 text-gold-400">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#properties" class="text-gray-400 hover:text-gold-400">Featured Properties</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-gold-400">Our Team</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-gold-400">About Us</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-gold-400">Client Stories</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-gold-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-medium mb-4 text-gold-400">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-gold-400">Buyer Representation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-400">Seller Representation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-400">Luxury Marketing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-400">Home Valuation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold-400">Relocation Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-heading font-medium mb-4 text-gold-400">Contact</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>123 Main Street, Suite 100<br>Evansville, IN 47708</li>
+                        <li><a href="tel:+18125550100" class="hover:text-gold-400">(812) 555-0100</a></li>
+                        <li><a href="mailto:jennifer@royalgroup-ev.com" class="hover:text-gold-400">jennifer@royalgroup-ev.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">&copy; 2024 Royal Group | Engel & Volkers. All rights reserved.</p>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="text-gray-400 hover:text-gold-400">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-gold-400">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-gold-400">Fair Housing</a>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary-950 py-3">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="text-xs text-gray-500">Powered by <span class="text-gold-400">AIQSO</span> - AI-Driven Business Solutions</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Toggle Button -->
+        <button id="chat-toggle" class="w-16 h-16 bg-gold-500 hover:bg-gold-600 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110">
+            <i data-lucide="message-circle" class="h-7 w-7 text-white" id="chat-icon-open"></i>
+            <i data-lucide="x" class="h-7 w-7 text-white hidden" id="chat-icon-close"></i>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden absolute bottom-20 right-0 w-96 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+            <!-- Chat Header -->
+            <div class="bg-gradient-to-r from-primary-900 to-primary-800 text-white p-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center">
+                        <i data-lucide="bot" class="h-5 w-5 text-white"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium">Royal AI Assistant</h3>
+                        <div class="flex items-center gap-1 text-xs text-gray-300">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            Powered by Local AI
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 bg-gray-50">
+                <!-- Welcome Message -->
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i data-lucide="bot" class="h-4 w-4 text-white"></i>
+                    </div>
+                    <div class="bg-white rounded-lg p-3 shadow-sm max-w-[80%]">
+                        <p class="text-sm text-gray-700">Hello! I'm the Royal Group AI assistant. I can help you with:</p>
+                        <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                            <li>- Property information & listings</li>
+                            <li>- Scheduling viewings</li>
+                            <li>- Market insights</li>
+                            <li>- Agent availability</li>
+                        </ul>
+                        <p class="text-sm text-gray-700 mt-2">How can I assist you today?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Questions -->
+            <div id="quick-questions" class="px-4 py-2 bg-white border-t border-gray-100">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="askQuestion('What properties are available under $1M?')" class="text-xs bg-gray-100 hover:bg-gold-100 text-gray-700 px-3 py-1.5 rounded-full transition-colors">Under $1M</button>
+                    <button onclick="askQuestion('Tell me about the Lakefront Estate')" class="text-xs bg-gray-100 hover:bg-gold-100 text-gray-700 px-3 py-1.5 rounded-full transition-colors">Lakefront Estate</button>
+                    <button onclick="askQuestion('Can I schedule a showing?')" class="text-xs bg-gray-100 hover:bg-gold-100 text-gray-700 px-3 py-1.5 rounded-full transition-colors">Schedule Showing</button>
+                </div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="p-4 bg-white border-t border-gray-200">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Ask about properties, agents, or services..."
+                           class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:border-gold-500 focus:ring-1 focus:ring-gold-500 outline-none text-sm">
+                    <button type="submit" class="px-4 py-2 bg-gold-500 hover:bg-gold-600 text-white rounded-lg transition-colors">
+                        <i data-lucide="send" class="h-4 w-4"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Property data for AI context
+        const propertyData = {
+            listings: [
+                { name: "Lakefront Estate with Private Dock", address: "1234 Lakeshore Drive, Evansville", price: "$2,450,000", beds: 5, baths: 4.5, sqft: 6500, status: "Just Listed", features: "Private dock, water views, gourmet kitchen" },
+                { name: "Modern Downtown Penthouse", address: "500 Main Street PH1, Downtown", price: "$1,850,000", beds: 3, baths: 3, sqft: 4200, features: "City views, rooftop terrace, smart home" },
+                { name: "Historic Victorian Mansion", address: "789 Heritage Lane, Newburgh", price: "$1,650,000", beds: 6, baths: 5, sqft: 7800, status: "Price Reduced", features: "Original woodwork, grand staircase, carriage house" },
+                { name: "Contemporary Hillside Retreat", address: "321 Ridge View Court, Evansville", price: "$1,250,000", beds: 4, baths: 3.5, sqft: 4800, features: "Floor-to-ceiling windows, infinity pool, home theater" },
+                { name: "Golf Course Estate Home", address: "456 Fairway Drive, Henderson", price: "$975,000", beds: 5, baths: 4, sqft: 5200, features: "Golf course views, outdoor kitchen, wine cellar" },
+                { name: "Luxury Modern Farmhouse", address: "892 Country Lane, Boonville", price: "$825,000", beds: 4, baths: 3, sqft: 3800, status: "Under Contract", features: "Barn doors, open concept, wrap-around porch" }
+            ],
+            team: [
+                { name: "Jennifer Royal", role: "Broker / Owner", specialty: "$85M+ in career sales" },
+                { name: "Marcus Thompson", role: "Senior Agent", specialty: "Luxury Specialist" },
+                { name: "Ashley Martinez", role: "Buyers Agent", specialty: "First-Time Buyer Expert" },
+                { name: "David Chen", role: "Investment Specialist", specialty: "Commercial & Residential" }
+            ],
+            stats: { totalSales: "$150M+", happyClients: 487, activeListings: 24, satisfaction: "98%" }
+        };
+
+        // Chat functionality
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatIconOpen = document.getElementById('chat-icon-open');
+        const chatIconClose = document.getElementById('chat-icon-close');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+
+        chatToggle.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+            chatIconOpen.classList.toggle('hidden');
+            chatIconClose.classList.toggle('hidden');
+            lucide.createIcons();
+        });
+
+        function addMessage(content, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex gap-3 ${isUser ? 'flex-row-reverse' : ''}`;
+
+            const avatar = isUser
+                ? '<div class="w-8 h-8 bg-primary-900 rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="user" class="h-4 w-4 text-white"></i></div>'
+                : '<div class="w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="h-4 w-4 text-white"></i></div>';
+
+            messageDiv.innerHTML = `
+                ${avatar}
+                <div class="${isUser ? 'bg-primary-900 text-white' : 'bg-white shadow-sm'} rounded-lg p-3 max-w-[80%]">
+                    <p class="text-sm ${isUser ? '' : 'text-gray-700'}">${content}</p>
+                </div>
+            `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.id = 'typing-indicator';
+            typingDiv.className = 'flex gap-3';
+            typingDiv.innerHTML = `
+                <div class="w-8 h-8 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="bot" class="h-4 w-4 text-white"></i>
+                </div>
+                <div class="bg-white rounded-lg p-3 shadow-sm">
+                    <div class="flex gap-1">
+                        <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0ms"></span>
+                        <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+                        <span class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typing-indicator');
+            if (indicator) indicator.remove();
+        }
+
+        async function getAIResponse(question) {
+            // Build context from property data
+            const context = `You are the Royal Group AI assistant for a luxury real estate company (Engel & Volkers affiliate) in Evansville, Indiana.
+
+Current Listings:
+${propertyData.listings.map(p => `- ${p.name} at ${p.address}: ${p.price}, ${p.beds} beds, ${p.baths} baths, ${p.sqft} sqft. ${p.status || ''} Features: ${p.features}`).join('\n')}
+
+Team Members:
+${propertyData.team.map(t => `- ${t.name}: ${t.role} - ${t.specialty}`).join('\n')}
+
+Company Stats: ${propertyData.stats.totalSales} total sales, ${propertyData.stats.happyClients} happy clients, ${propertyData.stats.activeListings} active listings, ${propertyData.stats.satisfaction} satisfaction rate.
+
+Contact: jennifer@royalgroup-ev.com, (812) 555-0100, 123 Main Street Suite 100, Evansville IN 47708
+
+Be helpful, professional, and concise. If asked to schedule a showing, ask for their contact info and preferred time. Keep responses under 150 words.`;
+
+            try {
+                const response = await fetch('http://192.168.0.234:11434/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'llama3.2:latest',
+                        prompt: `${context}\n\nUser question: ${question}\n\nAssistant response:`,
+                        stream: false,
+                        options: { temperature: 0.7, num_predict: 200 }
+                    })
+                });
+
+                if (!response.ok) throw new Error('AI unavailable');
+                const data = await response.json();
+                return data.response;
+            } catch (error) {
+                // Fallback responses
+                const q = question.toLowerCase();
+                if (q.includes('lakefront') || q.includes('lake')) {
+                    return "Our stunning Lakefront Estate at 1234 Lakeshore Drive is priced at $2,450,000. It features 5 bedrooms, 4.5 bathrooms, and 6,500 sqft with a private dock. Would you like to schedule a viewing?";
+                } else if (q.includes('under') && q.includes('1m')) {
+                    return "We have two beautiful properties under $1M:\n\n1. Golf Course Estate Home - $975,000 (5 bed, 4 bath)\n2. Luxury Modern Farmhouse - $825,000 (Under Contract)\n\nWould you like more details on either property?";
+                } else if (q.includes('schedule') || q.includes('showing') || q.includes('view')) {
+                    return "I'd be happy to help schedule a showing! Please share your preferred date/time and contact information, or call us at (812) 555-0100. Jennifer or one of our agents will confirm your appointment within 2 hours.";
+                } else if (q.includes('agent') || q.includes('team') || q.includes('jennifer')) {
+                    return "Our team is led by Jennifer Royal, Broker/Owner with $85M+ in career sales. We also have Marcus Thompson (Luxury Specialist), Ashley Martinez (First-Time Buyer Expert), and David Chen (Investment Specialist). How can we assist you?";
+                } else {
+                    return "I'd be happy to help! For detailed information or to speak with an agent directly, please call (812) 555-0100 or email jennifer@royalgroup-ev.com. What specific property or service interests you?";
+                }
+            }
+        }
+
+        async function askQuestion(question) {
+            addMessage(question, true);
+            document.getElementById('quick-questions').classList.add('hidden');
+            addTypingIndicator();
+
+            const response = await getAIResponse(question);
+            removeTypingIndicator();
+            addMessage(response);
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = chatInput.value.trim();
+            if (!question) return;
+
+            chatInput.value = '';
+            await askQuestion(question);
+        });
+
+        // Form submission - sends to both Mautic CRM and n8n for AI processing
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Prepare contact data for Mautic
+            const mauticData = {
+                firstname: data.firstName,
+                lastname: data.lastName,
+                email: data.email,
+                phone: data.phone || '',
+                city: 'Website Lead',
+                tags: ['website-lead', data.propertyInterest || 'general'],
+                points: 10 // Initial points for form submission
+            };
+
+            // Send to Mautic CRM directly
+            try {
+                const tokenResponse = await fetch('http://192.168.0.234:8081/oauth/v2/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'client_id=1_540hstc1hcg84s8cgo8soo0okk84o88ssw84c04sg084wkkk84&client_secret=4h57wbkbbksgkkcs0sw8ws4w08gkk0c848cwkcsgww44c4ks0o&grant_type=client_credentials'
+                });
+                const tokenData = await tokenResponse.json();
+
+                if (tokenData.access_token) {
+                    await fetch('http://192.168.0.234:8081/api/contacts/new', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Bearer ' + tokenData.access_token,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(mauticData)
+                    });
+                    console.log('Contact added to Mautic CRM');
+                }
+            } catch (err) {
+                console.log('Mautic sync attempted:', err.message);
+            }
+
+            // Also send to n8n for AI processing and notifications
+            try {
+                await fetch('/api/webhook/new-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ...data,
+                        source: 'website_contact_form',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+            } catch (err) {
+                console.log('n8n webhook attempted');
+            }
+
+            // Update Mautic tracking with identified user
+            if (typeof mt !== 'undefined') {
+                mt('send', 'pageview', { email: data.email, firstname: data.firstName, lastname: data.lastName });
+            }
+
+            this.classList.add('hidden');
+            document.getElementById('form-success').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

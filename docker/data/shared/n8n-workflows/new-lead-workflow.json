@@ -1,0 +1,121 @@
+{
+  "name": "Royal Group - New Lead Processing",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - New Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "model": "llama3.2",
+        "prompt": "You are a helpful real estate assistant for Royal Group. Generate a brief, warm, professional welcome email for a new lead with the following details:\n\nName: {{ $json.firstName }} {{ $json.lastName }}\nEmail: {{ $json.email }}\nInterested in: {{ $json.propertyInterest || 'real estate services' }}\nMessage: {{ $json.message || 'No message provided' }}\n\nWrite a personalized response that:\n1. Thanks them for their interest\n2. Acknowledges their specific interest if mentioned\n3. Promises a follow-up from Jennifer within 24 hours\n4. Is warm but professional, matching luxury real estate tone\n\nKeep it under 150 words.",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "id": "ollama-generate",
+      "name": "Generate AI Response",
+      "type": "@n8n/n8n-nodes-langchain.lmOllama",
+      "typeVersion": 1,
+      "position": [500, 300],
+      "credentials": {
+        "ollamaApi": {
+          "id": "1",
+          "name": "Ollama API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "fromEmail": "jennifer@royalgroup-ev.com",
+        "toEmail": "={{ $('Webhook - New Lead').item.json.email }}",
+        "subject": "Thank You for Contacting Royal Group | Engel & Volkers",
+        "emailType": "html",
+        "message": "<div style=\"font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;\">\n  <div style=\"text-align: center; border-bottom: 2px solid #c9a227; padding-bottom: 20px; margin-bottom: 20px;\">\n    <h1 style=\"color: #102a43; margin: 0;\"><span style=\"color: #c9a227;\">Royal</span> Group</h1>\n    <p style=\"color: #627d98; margin: 5px 0 0;\">Engel & Volkers</p>\n  </div>\n  <div style=\"color: #2d2d2d; line-height: 1.6;\">\n    {{ $('Generate AI Response').item.json.response }}\n  </div>\n  <div style=\"margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center;\">\n    <p style=\"color: #627d98; font-size: 14px;\">Jennifer Royal | Broker/Owner</p>\n    <p style=\"color: #627d98; font-size: 14px;\">(555) 123-4567 | jennifer@royalgroup-ev.com</p>\n  </div>\n</div>"
+      },
+      "id": "send-email",
+      "name": "Send Welcome Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Lead processed successfully' }) }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1000, 300]
+    },
+    {
+      "parameters": {
+        "channel": "#leads",
+        "text": ":house: *New Lead Received!*\n\n*Name:* {{ $('Webhook - New Lead').item.json.firstName }} {{ $('Webhook - New Lead').item.json.lastName }}\n*Email:* {{ $('Webhook - New Lead').item.json.email }}\n*Phone:* {{ $('Webhook - New Lead').item.json.phone || 'Not provided' }}\n*Interest:* {{ $('Webhook - New Lead').item.json.propertyInterest || 'Not specified' }}\n*Message:* {{ $('Webhook - New Lead').item.json.message || 'None' }}\n\n_AI welcome email has been sent automatically._"
+      },
+      "id": "slack-notify",
+      "name": "Notify Team (Optional)",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.1,
+      "position": [750, 500],
+      "disabled": true
+    }
+  ],
+  "connections": {
+    "Webhook - New Lead": {
+      "main": [
+        [
+          {
+            "node": "Generate AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate AI Response": {
+      "main": [
+        [
+          {
+            "node": "Send Welcome Email",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notify Team (Optional)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Welcome Email": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": ["Royal Group", "Lead Management", "AI"]
+}

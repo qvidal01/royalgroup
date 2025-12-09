@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body text-luxury-charcoal bg-luxury-cream antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-white bg-primary-900 border border-transparent rounded-none hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200 uppercase;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-primary-900 bg-transparent border-2 border-primary-900 rounded-none hover:bg-primary-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200 uppercase;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wide text-white bg-gold-500 border border-transparent rounded-none hover:bg-gold-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold-400 transition-colors duration-200 uppercase;
+  }
+
+  .section-heading {
+    @apply text-4xl md:text-5xl font-heading font-medium text-primary-900 mb-4;
+  }
+
+  .section-subheading {
+    @apply text-lg text-luxury-slate max-w-2xl;
+  }
+
+  .luxury-card {
+    @apply bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl;
+  }
+
+  .gold-accent {
+    @apply text-gold-500;
+  }
+
+  .divider-gold {
+    @apply w-20 h-1 bg-gold-500 mx-auto my-6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9a227;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a78b1a;
+}

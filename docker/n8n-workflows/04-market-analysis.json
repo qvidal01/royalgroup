@@ -1,0 +1,51 @@
+{
+  "name": "04 - AI Market Analysis Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "market-analysis",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "market-analysis"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.234:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"prompt\": \"You are a real estate market analyst for the Evansville, Indiana tri-state area. Generate a brief market analysis report.\\n\\nNeighborhood/Area: {{ $json.area || 'Evansville Metro' }}\\nProperty Type: {{ $json.propertyType || 'Luxury Homes' }}\\nPrice Range: {{ $json.priceRange || '$500K-$2M' }}\\n\\nProvide a 200-word analysis covering:\\n1. Current market conditions (use realistic but hypothetical data)\\n2. Price trends\\n3. Inventory levels\\n4. Buyer/seller recommendations\\n5. 6-month outlook\\n\\nBe specific with percentages and timeframes. Sound authoritative.\",\n  \"stream\": false,\n  \"options\": { \"temperature\": 0.6, \"num_predict\": 400 }\n}",
+        "options": {}
+      },
+      "id": "2",
+      "name": "Generate Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"area\": \"{{ $('Webhook').item.json.area || 'Evansville Metro' }}\",\n  \"generatedAt\": \"{{ new Date().toISOString() }}\",\n  \"analysis\": {{ JSON.stringify($json.response) }}\n}"
+      },
+      "id": "3",
+      "name": "Return Analysis",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Generate Analysis", "type": "main", "index": 0 }]] },
+    "Generate Analysis": { "main": [[{ "node": "Return Analysis", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "AI" }, { "name": "Reports" }]
+}

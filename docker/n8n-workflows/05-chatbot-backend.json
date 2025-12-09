@@ -1,0 +1,68 @@
+{
+  "name": "05 - Website Chatbot Backend",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chat",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              { "name": "Access-Control-Allow-Origin", "value": "*" }
+            ]
+          }
+        }
+      },
+      "id": "1",
+      "name": "Chat Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "chat"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\n\nconst systemPrompt = `You are the Royal Group AI assistant for a luxury real estate company (Engel & Völkers) in Evansville, Indiana.\n\nCurrent Listings:\n- Lakefront Estate: 1234 Lakeshore Dr, $2,450,000, 5 bed/4.5 bath, 6,500 sqft, private dock\n- Modern Penthouse: 500 Main St PH1, $1,850,000, 3 bed/3 bath, 4,200 sqft, city views\n- Victorian Mansion: 789 Heritage Lane, $1,650,000, 6 bed/5 bath, 7,800 sqft, price reduced\n- Hillside Retreat: 321 Ridge View Ct, $1,250,000, 4 bed/3.5 bath, 4,800 sqft\n- Golf Course Estate: 456 Fairway Dr, $975,000, 5 bed/4 bath, 5,200 sqft\n- Modern Farmhouse: 892 Country Lane, $825,000, 4 bed/3 bath, under contract\n\nTeam: Jennifer Royal (Broker/Owner), Marcus Thompson (Luxury Specialist), Ashley Martinez (Buyers Agent), David Chen (Investment Specialist)\n\nContact: (812) 555-0100, jennifer@royalgroup-ev.com\n\nBe helpful, professional, concise. Keep responses under 100 words.`;\n\nreturn [{\n  json: {\n    systemPrompt,\n    userMessage: input.message || input.question || 'Hello',\n    conversationHistory: input.history || []\n  }\n}];"
+      },
+      "id": "2",
+      "name": "Build Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.234:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"prompt\": \"{{ $json.systemPrompt }}\\n\\nUser: {{ $json.userMessage }}\\n\\nAssistant:\",\n  \"stream\": false,\n  \"options\": { \"temperature\": 0.7, \"num_predict\": 150 }\n}",
+        "options": {}
+      },
+      "id": "3",
+      "name": "Get AI Response",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"response\": {{ JSON.stringify($json.response) }},\n  \"timestamp\": \"{{ new Date().toISOString() }}\"\n}"
+      },
+      "id": "4",
+      "name": "Return Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Chat Webhook": { "main": [[{ "node": "Build Context", "type": "main", "index": 0 }]] },
+    "Build Context": { "main": [[{ "node": "Get AI Response", "type": "main", "index": 0 }]] },
+    "Get AI Response": { "main": [[{ "node": "Return Response", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "AI" }, { "name": "Chatbot" }]
+}

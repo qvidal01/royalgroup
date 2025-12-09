@@ -1,0 +1,64 @@
+{
+  "name": "06 - Scheduled Lead Follow-up Reminder",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 4
+            }
+          ]
+        }
+      },
+      "id": "1",
+      "name": "Every 4 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Simulated leads that need follow-up\n// In production, this would query Mautic or a database\n\nconst leadsNeedingFollowUp = [\n  {\n    name: 'Robert Williams',\n    email: 'robert.williams@email.com',\n    phone: '(812) 555-1234',\n    interest: 'Lakefront Estate',\n    lastContact: '2 days ago',\n    status: 'Hot',\n    notes: 'Pre-approved for $2.5M, wants showing this week'\n  },\n  {\n    name: 'Sarah Chen',\n    email: 'sarah.chen@email.com', \n    phone: '(812) 555-5678',\n    interest: 'Modern Penthouse',\n    lastContact: '3 days ago',\n    status: 'Warm',\n    notes: 'Relocating from Chicago, timeline 60 days'\n  },\n  {\n    name: 'Michael Thompson',\n    email: 'mthompson@email.com',\n    phone: '(812) 555-9012',\n    interest: 'Investment Properties',\n    lastContact: '5 days ago',\n    status: 'Warm',\n    notes: 'Looking for rental income properties under $500K'\n  }\n];\n\nreturn leadsNeedingFollowUp.map(lead => ({ json: lead }));"
+      },
+      "id": "2",
+      "name": "Get Leads Needing Follow-up",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.234:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"prompt\": \"Generate a brief, personalized follow-up talking point for a real estate agent. Keep it to 2 sentences max.\\n\\nClient: {{ $json.name }}\\nInterest: {{ $json.interest }}\\nLast Contact: {{ $json.lastContact }}\\nNotes: {{ $json.notes }}\\n\\nSuggested follow-up message:\",\n  \"stream\": false,\n  \"options\": { \"temperature\": 0.7, \"num_predict\": 100 }\n}",
+        "options": {}
+      },
+      "id": "3",
+      "name": "Generate Follow-up Suggestion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lead = $('Get Leads Needing Follow-up').item.json;\nconst suggestion = $input.first().json.response;\n\nconsole.log('='.repeat(50));\nconsole.log(`📞 FOLLOW-UP REMINDER: ${lead.name}`);\nconsole.log(`Status: ${lead.status} | Interest: ${lead.interest}`);\nconsole.log(`Phone: ${lead.phone} | Email: ${lead.email}`);\nconsole.log(`Last Contact: ${lead.lastContact}`);\nconsole.log(`AI Suggestion: ${suggestion}`);\nconsole.log('='.repeat(50));\n\nreturn [{ json: { ...lead, aiSuggestion: suggestion } }];"
+      },
+      "id": "4",
+      "name": "Log Reminder",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    }
+  ],
+  "connections": {
+    "Every 4 Hours": { "main": [[{ "node": "Get Leads Needing Follow-up", "type": "main", "index": 0 }]] },
+    "Get Leads Needing Follow-up": { "main": [[{ "node": "Generate Follow-up Suggestion", "type": "main", "index": 0 }]] },
+    "Generate Follow-up Suggestion": { "main": [[{ "node": "Log Reminder", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "AI" }, { "name": "Lead Management" }, { "name": "Scheduled" }]
+}

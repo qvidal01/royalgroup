@@ -1,0 +1,88 @@
+{
+  "name": "Royal Group - AI Property Description Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-description",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-2",
+      "name": "Webhook - Property Data",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a luxury real estate copywriter for Engel & Völkers. Write compelling, sophisticated property descriptions that appeal to high-net-worth buyers. Use evocative language while maintaining professionalism. Include lifestyle benefits and unique features."
+            },
+            {
+              "role": "user",
+              "content": "=Write a luxury property listing description for:\n\nAddress: {{ $json.address }}\nPrice: ${{ $json.price }}\nBedrooms: {{ $json.bedrooms }}\nBathrooms: {{ $json.bathrooms }}\nSquare Feet: {{ $json.sqft }}\nFeatures: {{ $json.features }}\nNeighborhood: {{ $json.neighborhood }}\n\nProvide a 150-200 word description that highlights the property's appeal to luxury buyers."
+            }
+          ]
+        },
+        "options": {
+          "baseUrl": "http://host.docker.internal:11434"
+        }
+      },
+      "id": "ollama-2",
+      "name": "Generate Luxury Description",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [490, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, description: $json.message.content, property: $('Webhook - Property Data').item.json }) }}"
+      },
+      "id": "respond-3",
+      "name": "Return Description",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [730, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Property Data": {
+      "main": [
+        [
+          {
+            "node": "Generate Luxury Description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Luxury Description": {
+      "main": [
+        [
+          {
+            "node": "Return Description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "AI Tools"
+    }
+  ],
+  "triggerCount": 1
+}

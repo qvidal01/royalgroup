@@ -1,0 +1,183 @@
+{
+  "name": "Royal Group - Lead Capture to Mautic",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-capture",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-1",
+      "name": "Webhook - Lead Form",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "condition-1",
+              "leftValue": "={{ $json.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-1",
+      "name": "Validate Email",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a real estate lead qualification assistant. Analyze the lead information and provide a brief qualification score (Hot/Warm/Cold) and suggested follow-up action."
+            },
+            {
+              "role": "user",
+              "content": "=New lead received:\nName: {{ $json.name }}\nEmail: {{ $json.email }}\nPhone: {{ $json.phone }}\nProperty Interest: {{ $json.property_type }}\nBudget: {{ $json.budget }}\nMessage: {{ $json.message }}\n\nPlease qualify this lead and suggest next steps."
+            }
+          ]
+        },
+        "options": {
+          "baseUrl": "http://host.docker.internal:11434"
+        }
+      },
+      "id": "ollama-1",
+      "name": "AI Lead Qualification",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [690, 200]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "additionalFields": {
+          "firstname": "={{ $('Webhook - Lead Form').item.json.name.split(' ')[0] }}",
+          "lastname": "={{ $('Webhook - Lead Form').item.json.name.split(' ').slice(1).join(' ') }}",
+          "phone": "={{ $('Webhook - Lead Form').item.json.phone }}",
+          "company": "={{ $('Webhook - Lead Form').item.json.property_type }}",
+          "position": "={{ $('Webhook - Lead Form').item.json.budget }}"
+        }
+      },
+      "id": "mautic-1",
+      "name": "Create Mautic Contact",
+      "type": "n8n-nodes-base.mautic",
+      "typeVersion": 1,
+      "position": [910, 200],
+      "credentials": {
+        "mauticApi": {
+          "id": "1",
+          "name": "Mautic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Thank you! A Royal Group agent will contact you shortly.', lead_id: $json.id }) }}"
+      },
+      "id": "respond-1",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1130, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: false, message: 'Please provide a valid email address.' }) }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "respond-2",
+      "name": "Error Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [690, 400]
+    }
+  ],
+  "connections": {
+    "Webhook - Lead Form": {
+      "main": [
+        [
+          {
+            "node": "Validate Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Email": {
+      "main": [
+        [
+          {
+            "node": "AI Lead Qualification",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Lead Qualification": {
+      "main": [
+        [
+          {
+            "node": "Create Mautic Contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Mautic Contact": {
+      "main": [
+        [
+          {
+            "node": "Success Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "Lead Management"
+    }
+  ],
+  "triggerCount": 1
+}

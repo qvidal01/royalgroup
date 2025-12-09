@@ -1,0 +1,51 @@
+{
+  "name": "03 - AI Email Response Drafter",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "draft-email",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "draft-email"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.234:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"prompt\": \"You are Jennifer Royal, a luxury real estate broker at Royal Group (Engel & Völkers). Draft a professional, warm email response.\\n\\nClient Name: {{ $json.clientName }}\\nTheir Question: {{ $json.question }}\\nContext: {{ $json.context || 'General inquiry' }}\\n\\nWrite a helpful response that:\\n- Is professional but personable\\n- Offers to help further\\n- Signs off as Jennifer Royal, Broker/Owner, Royal Group | Engel & Völkers\\n- Includes phone: (812) 555-0100\\n\\nKeep it under 150 words.\",\n  \"stream\": false,\n  \"options\": { \"temperature\": 0.7, \"num_predict\": 250 }\n}",
+        "options": {}
+      },
+      "id": "2",
+      "name": "Draft Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"to\": \"{{ $('Webhook').item.json.clientName }}\",\n  \"draftEmail\": {{ JSON.stringify($json.response) }}\n}"
+      },
+      "id": "3",
+      "name": "Return Draft",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Draft Email", "type": "main", "index": 0 }]] },
+    "Draft Email": { "main": [[{ "node": "Return Draft", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "AI" }, { "name": "Email" }]
+}

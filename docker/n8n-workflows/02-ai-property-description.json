@@ -1,0 +1,51 @@
+{
+  "name": "02 - AI Property Description Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "generate-listing",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "generate-listing"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.234:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"prompt\": \"You are a luxury real estate copywriter for Engel & Völkers. Write a compelling 150-word property listing description for:\\n\\nAddress: {{ $json.address }}\\nPrice: ${{ $json.price }}\\nBedrooms: {{ $json.bedrooms }}\\nBathrooms: {{ $json.bathrooms }}\\nSquare Feet: {{ $json.sqft }}\\nFeatures: {{ $json.features }}\\nNeighborhood: {{ $json.neighborhood }}\\n\\nUse sophisticated language appealing to luxury buyers. Highlight lifestyle benefits. Do not use bullet points.\",\n  \"stream\": false,\n  \"options\": { \"temperature\": 0.8, \"num_predict\": 300 }\n}",
+        "options": {}
+      },
+      "id": "2",
+      "name": "Generate Description",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"property\": {\n    \"address\": \"{{ $('Webhook').item.json.address }}\",\n    \"price\": \"{{ $('Webhook').item.json.price }}\"\n  },\n  \"description\": {{ JSON.stringify($json.response) }}\n}"
+      },
+      "id": "3",
+      "name": "Return Description",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Generate Description", "type": "main", "index": 0 }]] },
+    "Generate Description": { "main": [[{ "node": "Return Description", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "AI" }, { "name": "Content" }]
+}

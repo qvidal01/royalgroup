@@ -1,0 +1,115 @@
+{
+  "name": "01 - Website Lead Capture & AI Qualification",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "new-lead",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "new-lead"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract and format lead data\nconst lead = $input.first().json;\n\nreturn [{\n  json: {\n    firstName: lead.firstName || lead.name?.split(' ')[0] || 'Unknown',\n    lastName: lead.lastName || lead.name?.split(' ').slice(1).join(' ') || '',\n    email: lead.email,\n    phone: lead.phone || 'Not provided',\n    interest: lead.propertyInterest || lead.interest || 'General inquiry',\n    priceRange: lead.priceRange || 'Not specified',\n    message: lead.message || '',\n    source: lead.source || 'website',\n    timestamp: new Date().toISOString(),\n    // For AI analysis\n    fullContext: `New lead: ${lead.firstName || lead.name} is interested in ${lead.propertyInterest || 'real estate'}. Budget: ${lead.priceRange || 'unknown'}. Message: ${lead.message || 'none'}`\n  }\n}];"
+      },
+      "id": "2",
+      "name": "Format Lead Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://192.168.0.234:11434/api/generate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama3.2:latest\",\n  \"prompt\": \"You are a real estate lead qualifier. Analyze this lead and respond with ONLY a JSON object (no markdown, no explanation):\\n\\n{\\\"score\\\": \\\"Hot/Warm/Cold\\\", \\\"priority\\\": 1-10, \\\"suggestedAction\\\": \\\"brief action\\\", \\\"reasoning\\\": \\\"one sentence\\\"}\\n\\nLead: {{ $json.fullContext }}\",\n  \"stream\": false,\n  \"options\": { \"temperature\": 0.3 }\n}",
+        "options": {}
+      },
+      "id": "3",
+      "name": "AI Lead Scoring",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lead = $('Format Lead Data').first().json;\nconst aiResponse = $input.first().json;\n\nlet aiResult = { score: 'Warm', priority: 5, suggestedAction: 'Follow up within 24 hours', reasoning: 'Standard lead' };\n\ntry {\n  // Try to parse AI response\n  const responseText = aiResponse.response || '';\n  const jsonMatch = responseText.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    aiResult = JSON.parse(jsonMatch[0]);\n  }\n} catch (e) {\n  // Use defaults if parsing fails\n}\n\nreturn [{\n  json: {\n    ...lead,\n    aiScore: aiResult.score,\n    aiPriority: aiResult.priority,\n    aiAction: aiResult.suggestedAction,\n    aiReasoning: aiResult.reasoning\n  }\n}];"
+      },
+      "id": "4",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.aiScore }}",
+              "rightValue": "Hot",
+              "operator": { "type": "string", "operation": "equals" }
+            }
+          ]
+        }
+      },
+      "id": "5",
+      "name": "Is Hot Lead?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1050, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ success: true, message: 'Thank you! A Royal Group agent will contact you shortly.', leadId: Date.now() }) }}"
+      },
+      "id": "6",
+      "name": "Success Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1450, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lead = $input.first().json;\n\nconsole.log('🔥 HOT LEAD ALERT!');\nconsole.log(`Name: ${lead.firstName} ${lead.lastName}`);\nconsole.log(`Email: ${lead.email}`);\nconsole.log(`Interest: ${lead.interest}`);\nconsole.log(`AI Score: ${lead.aiScore}`);\nconsole.log(`Suggested Action: ${lead.aiAction}`);\n\nreturn [$input.first()];"
+      },
+      "id": "7",
+      "name": "Log Hot Lead",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "const lead = $input.first().json;\n\nconsole.log('📋 New Lead Received');\nconsole.log(`Name: ${lead.firstName} ${lead.lastName}`);\nconsole.log(`Email: ${lead.email}`);\nconsole.log(`AI Score: ${lead.aiScore}`);\n\nreturn [$input.first()];"
+      },
+      "id": "8",
+      "name": "Log Standard Lead",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 400]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Format Lead Data", "type": "main", "index": 0 }]] },
+    "Format Lead Data": { "main": [[{ "node": "AI Lead Scoring", "type": "main", "index": 0 }]] },
+    "AI Lead Scoring": { "main": [[{ "node": "Parse AI Response", "type": "main", "index": 0 }]] },
+    "Parse AI Response": { "main": [[{ "node": "Is Hot Lead?", "type": "main", "index": 0 }]] },
+    "Is Hot Lead?": { "main": [[{ "node": "Log Hot Lead", "type": "main", "index": 0 }], [{ "node": "Log Standard Lead", "type": "main", "index": 0 }]] },
+    "Log Hot Lead": { "main": [[{ "node": "Success Response", "type": "main", "index": 0 }]] },
+    "Log Standard Lead": { "main": [[{ "node": "Success Response", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "Lead Management" }, { "name": "AI" }]
+}

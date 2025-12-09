@@ -1,0 +1,183 @@
+version: '3.8'
+
+# Royal Group Demo Stack - For AI Server (192.168.0.234)
+# Uses existing Ollama on localhost:11434
+
+services:
+  # ====================
+  # REVERSE PROXY
+  # ====================
+  traefik:
+    image: traefik:v2.10
+    container_name: royal-traefik
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "8080:8080"
+    command:
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--log.level=INFO"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - royal-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=PathPrefix(`/dashboard`) || PathPrefix(`/api`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
+
+  # ====================
+  # DATABASES
+  # ====================
+  postgres:
+    image: postgres:16-alpine
+    container_name: royal-postgres
+    restart: unless-stopped
+    volumes:
+      - royal_postgres_data:/var/lib/postgresql/data
+      - ./configs/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      POSTGRES_USER: royalgroup
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-RoyalDemo2024!}
+      POSTGRES_DB: royalgroup
+    networks:
+      - royal-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U royalgroup"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mariadb:
+    image: mariadb:10.11
+    container_name: royal-mariadb
+    restart: unless-stopped
+    volumes:
+      - royal_mariadb_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-RootDemo2024!}
+      MYSQL_DATABASE: mautic
+      MYSQL_USER: mautic
+      MYSQL_PASSWORD: ${MAUTIC_DB_PASSWORD:-MauticDemo2024!}
+    networks:
+      - royal-network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: royal-redis
+    restart: unless-stopped
+    volumes:
+      - royal_redis_data:/data
+    networks:
+      - royal-network
+
+  # ====================
+  # MAUTIC CRM
+  # ====================
+  mautic:
+    image: mautic/mautic:5-apache
+    container_name: royal-mautic
+    restart: unless-stopped
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+    volumes:
+      - royal_mautic_data:/var/www/html
+    environment:
+      MAUTIC_DB_HOST: mariadb
+      MAUTIC_DB_PORT: 3306
+      MAUTIC_DB_NAME: mautic
+      MAUTIC_DB_USER: mautic
+      MAUTIC_DB_PASSWORD: ${MAUTIC_DB_PASSWORD:-MauticDemo2024!}
+      MAUTIC_RUN_CRON_JOBS: "true"
+      MAUTIC_TRUSTED_PROXIES: '["0.0.0.0/0"]'
+    networks:
+      - royal-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mautic.rule=Host(`crm.royal.local`) || PathPrefix(`/crm`)"
+      - "traefik.http.services.mautic.loadbalancer.server.port=80"
+
+  # ====================
+  # N8N AUTOMATION
+  # ====================
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: royal-n8n
+    restart: unless-stopped
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "5678:5678"
+    volumes:
+      - royal_n8n_data:/home/node/.n8n
+      - ./data/shared:/data/shared
+    environment:
+      N8N_HOST: 192.168.0.234
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY:-RoyalN8nKey2024!}
+      WEBHOOK_URL: http://192.168.0.234:5678/
+      GENERIC_TIMEZONE: America/Chicago
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8n
+      DB_POSTGRESDB_USER: royalgroup
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD:-RoyalDemo2024!}
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: admin
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_PASSWORD:-RoyalDemo2024!}
+      # Connect to existing Ollama on same host
+      OLLAMA_HOST: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - royal-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n.rule=Host(`automation.royal.local`) || PathPrefix(`/n8n`)"
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+
+  # ====================
+  # WEBSITE (Static build served by nginx for speed)
+  # ====================
+  website:
+    image: nginx:alpine
+    container_name: royal-website
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+    volumes:
+      - ./website-static:/usr/share/nginx/html:ro
+      - ./configs/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - royal-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.website.rule=Host(`royal.local`) || Host(`192.168.0.234`) || PathPrefix(`/`)"
+      - "traefik.http.routers.website.priority=1"
+      - "traefik.http.services.website.loadbalancer.server.port=80"
+
+networks:
+  royal-network:
+    driver: bridge
+
+volumes:
+  royal_postgres_data:
+  royal_mariadb_data:
+  royal_redis_data:
+  royal_mautic_data:
+  royal_n8n_data:
