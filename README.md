@@ -41,18 +41,20 @@ A comprehensive self-hosted digital platform to replace the client's current Lof
 
 ### Production URLs (aiqso.biz - POV Clients)
 
+**External Access:** Cloudflare Tunnel (HTTPS secured)
+
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| **Website** | http://royalgroup.aiqso.biz | - |
-| **Mautic CRM** | http://royalgroup-crm.aiqso.biz | (Setup on first visit) |
-| **n8n Workflows** | http://royalgroup-auto.aiqso.biz | admin / RoyalDemo2024! |
-| **MinIO Storage** | http://192.168.0.53:9001 | royaladmin / RoyalMinio2024! |
-| **AI (Ollama)** | http://192.168.0.234:11434 | - (on AI Server) |
+| **Website** | https://royalgroup.aiqso.biz | - |
+| **Mautic CRM** | https://royalgroup-crm.aiqso.biz | (Setup on first visit) |
+| **n8n Workflows** | https://royalgroup-auto.aiqso.biz | admin / RoyalDemo2024! |
+| **MinIO Storage** | http://192.168.0.53:9001 | royaladmin / RoyalMinio2024! (internal only) |
+| **AI (Ollama)** | http://192.168.0.234:11434 | - (internal only) |
 
 ### Team Member Pages
-- [Jennifer D. Holmes](http://royalgroup.aiqso.biz/team/jennifer-holmes.html)
-- [Adavien Holmes](http://royalgroup.aiqso.biz/team/adavien-holmes.html)
-- [Jill Govan](http://royalgroup.aiqso.biz/team/jill-govan.html)
+- [Jennifer D. Holmes](https://royalgroup.aiqso.biz/team/jennifer-holmes.html)
+- [Adavien Holmes](https://royalgroup.aiqso.biz/team/adavien-holmes.html)
+- [Jill Govan](https://royalgroup.aiqso.biz/team/jill-govan.html)
 
 ### Domain Strategy
 | Domain | Purpose | Client Stage |
