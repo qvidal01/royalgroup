@@ -35,17 +35,21 @@ A comprehensive self-hosted digital platform to replace the client's current Lof
 
 ## Current Demo Access
 
+**Deployment:** LXC Container 600 on Proxmain (192.168.0.165)
+**Container IP:** 192.168.0.53
+
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| **Website** | http://192.168.0.234:3001 | - |
-| **Mautic CRM** | http://192.168.0.234:8081 | admin / RoyalDemo2024! |
-| **n8n Workflows** | http://192.168.0.234:5678 | admin / RoyalDemo2024! |
-| **AI (Ollama)** | http://192.168.0.234:11434 | - |
+| **Website** | http://192.168.0.53:3001 | - |
+| **Mautic CRM** | http://192.168.0.53:8081 | (Setup on first visit) |
+| **n8n Workflows** | http://192.168.0.53:5678 | admin / RoyalDemo2024! |
+| **MinIO Storage** | http://192.168.0.53:9001 | royaladmin / RoyalMinio2024! |
+| **AI (Ollama)** | http://192.168.0.234:11434 | - (on AI Server) |
 
 ### Team Member Pages
-- [Jennifer D. Holmes](http://192.168.0.234:3001/team/jennifer-holmes.html)
-- [Adavien Holmes](http://192.168.0.234:3001/team/adavien-holmes.html)
-- [Jill Govan](http://192.168.0.234:3001/team/jill-govan.html)
+- [Jennifer D. Holmes](http://192.168.0.53:3001/team/jennifer-holmes.html)
+- [Adavien Holmes](http://192.168.0.53:3001/team/adavien-holmes.html)
+- [Jill Govan](http://192.168.0.53:3001/team/jill-govan.html)
 
 ---
 
@@ -289,26 +293,32 @@ docker exec ollama ollama pull llama3.2
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                   AI Server (192.168.0.234)                     │
+│              LXC 600 - Proxmain (192.168.0.53)                  │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐ │
 │  │   Website   │  │    n8n      │  │        Mautic           │ │
 │  │   :3001     │  │   :5678     │  │        :8081            │ │
-│  │             │  │             │  │                         │ │
-│  │  Next.js    │  │  Workflow   │  │   CRM + Marketing       │ │
-│  │  React/TS   │  │  Automation │  │   Automation            │ │
+│  │  (nginx)    │  │  Workflow   │  │   CRM + Marketing       │ │
 │  └─────────────┘  └─────────────┘  └─────────────────────────┘ │
 │         │                │                    │                 │
 │         └────────────────┼────────────────────┘                 │
 │                          ▼                                      │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐ │
-│  │  PostgreSQL │  │   Ollama    │  │        MariaDB          │ │
-│  │   (n8n)     │  │   :11434    │  │       (Mautic)          │ │
-│  │             │  │  RTX 3090   │  │                         │ │
-│  │             │  │  24GB VRAM  │  │                         │ │
+│  │  PostgreSQL │  │    MinIO    │  │        MariaDB          │ │
+│  │   (n8n)     │  │  :9000/9001 │  │       (Mautic)          │ │
+│  │             │  │  S3 Storage │  │                         │ │
 │  └─────────────┘  └─────────────┘  └─────────────────────────┘ │
+│                          │                                      │
+└──────────────────────────┼──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                   AI Server (192.168.0.234)                     │
 │                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │   Ollama :11434  │  RTX 3090  │  24GB VRAM  │  AI Models   ││
+│  └─────────────────────────────────────────────────────────────┘│
 └─────────────────────────────────────────────────────────────────┘
 ```
 
