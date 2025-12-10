@@ -35,21 +35,31 @@ A comprehensive self-hosted digital platform to replace the client's current Lof
 
 ## Current Demo Access
 
+**Status:** POV (Proof of Value) - Pre-funding
 **Deployment:** LXC Container 600 on Proxmain (192.168.0.165)
 **Container IP:** 192.168.0.53
 
+### Production URLs (aiqso.biz - POV Clients)
+
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| **Website** | http://192.168.0.53:3001 | - |
-| **Mautic CRM** | http://192.168.0.53:8081 | (Setup on first visit) |
-| **n8n Workflows** | http://192.168.0.53:5678 | admin / RoyalDemo2024! |
+| **Website** | http://royalgroup.aiqso.biz | - |
+| **Mautic CRM** | http://royalgroup-crm.aiqso.biz | (Setup on first visit) |
+| **n8n Workflows** | http://royalgroup-auto.aiqso.biz | admin / RoyalDemo2024! |
 | **MinIO Storage** | http://192.168.0.53:9001 | royaladmin / RoyalMinio2024! |
 | **AI (Ollama)** | http://192.168.0.234:11434 | - (on AI Server) |
 
 ### Team Member Pages
-- [Jennifer D. Holmes](http://192.168.0.53:3001/team/jennifer-holmes.html)
-- [Adavien Holmes](http://192.168.0.53:3001/team/adavien-holmes.html)
-- [Jill Govan](http://192.168.0.53:3001/team/jill-govan.html)
+- [Jennifer D. Holmes](http://royalgroup.aiqso.biz/team/jennifer-holmes.html)
+- [Adavien Holmes](http://royalgroup.aiqso.biz/team/adavien-holmes.html)
+- [Jill Govan](http://royalgroup.aiqso.biz/team/jill-govan.html)
+
+### Domain Strategy
+| Domain | Purpose | Client Stage |
+|--------|---------|--------------|
+| `*.aiqso.biz` | POV environments | Pre-funding clients |
+| `*.aiqso.app` | Demo/POC environments | Prospects & demos |
+| Client's domain | Production | Paying clients |
 
 ---
 
