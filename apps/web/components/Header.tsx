@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X, Phone, Mail } from 'lucide-react'
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, Phone, Mail } from "lucide-react";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'Properties', href: '#properties' },
-    { name: 'About', href: '#about' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
-  ]
+    { name: "Home", href: "/" },
+    { name: "Properties", href: "#properties" },
+    { name: "About", href: "#about" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   return (
     <header className="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm">
@@ -21,11 +21,17 @@ export function Header() {
       <div className="bg-primary-900 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+15551234567" className="flex items-center gap-2 hover:text-gold-400 transition-colors">
+            <a
+              href="tel:+15551234567"
+              className="flex items-center gap-2 hover:text-gold-400 transition-colors"
+            >
               <Phone className="h-4 w-4" />
               <span>(555) 123-4567</span>
             </a>
-            <a href="mailto:jennifer@royalgroup-ev.com" className="hidden sm:flex items-center gap-2 hover:text-gold-400 transition-colors">
+            <a
+              href="mailto:jennifer@royalgroup-ev.com"
+              className="hidden sm:flex items-center gap-2 hover:text-gold-400 transition-colors"
+            >
               <Mail className="h-4 w-4" />
               <span>jennifer@royalgroup-ev.com</span>
             </a>
@@ -95,5 +101,5 @@ export function Header() {
         )}
       </nav>
     </header>
-  )
+  );
 }

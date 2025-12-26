@@ -1,30 +1,33 @@
-'use client'
+"use client";
 
-import { Star, Quote } from 'lucide-react'
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
     id: 1,
-    name: 'Michael & Sarah Thompson',
-    role: 'Purchased in Henderson County',
-    content: 'Jennifer made our dream home a reality. Her expertise in the luxury market and attention to detail throughout the entire process was exceptional. We could not have asked for a better advocate.',
+    name: "Michael & Sarah Thompson",
+    role: "Purchased in Henderson County",
+    content:
+      "Jennifer made our dream home a reality. Her expertise in the luxury market and attention to detail throughout the entire process was exceptional. We could not have asked for a better advocate.",
     rating: 5,
   },
   {
     id: 2,
-    name: 'David Chen',
-    role: 'Sold in Evansville',
-    content: 'After interviewing several agents, we chose Jennifer and it was the best decision we made. She sold our home above asking price in just two weeks. Her marketing strategy was brilliant.',
+    name: "David Chen",
+    role: "Sold in Evansville",
+    content:
+      "After interviewing several agents, we chose Jennifer and it was the best decision we made. She sold our home above asking price in just two weeks. Her marketing strategy was brilliant.",
     rating: 5,
   },
   {
     id: 3,
-    name: 'The Richardson Family',
-    role: 'Relocated from Chicago',
-    content: 'Relocating from out of state seemed daunting until we found Jennifer. She took the time to understand exactly what we were looking for and made the transition seamless. Highly recommend!',
+    name: "The Richardson Family",
+    role: "Relocated from Chicago",
+    content:
+      "Relocating from out of state seemed daunting until we found Jennifer. She took the time to understand exactly what we were looking for and made the transition seamless. Highly recommend!",
     rating: 5,
   },
-]
+];
 
 export function Testimonials() {
   return (
@@ -38,7 +41,8 @@ export function Testimonials() {
           <h2 className="section-heading">What Our Clients Say</h2>
           <div className="divider-gold" />
           <p className="section-subheading mx-auto">
-            We take pride in exceeding expectations and building lasting relationships with our clients.
+            We take pride in exceeding expectations and building lasting relationships with our
+            clients.
           </p>
         </div>
 
@@ -63,22 +67,18 @@ export function Testimonials() {
 
               {/* Content */}
               <p className="text-luxury-slate text-lg leading-relaxed mb-6 italic">
-                "{testimonial.content}"
+                &ldquo;{testimonial.content}&rdquo;
               </p>
 
               {/* Author */}
               <div className="pt-6 border-t border-gold-500/20">
-                <div className="font-heading font-medium text-primary-900">
-                  {testimonial.name}
-                </div>
-                <div className="text-sm text-luxury-slate">
-                  {testimonial.role}
-                </div>
+                <div className="font-heading font-medium text-primary-900">{testimonial.name}</div>
+                <div className="text-sm text-luxury-slate">{testimonial.role}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

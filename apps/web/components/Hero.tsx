@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { ChevronDown, Search } from 'lucide-react'
+import { ChevronDown, Search } from "lucide-react";
 
 export function Hero() {
   return (
@@ -9,7 +9,8 @@ export function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80)',
+          backgroundImage:
+            "url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80)",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-primary-900/60 via-primary-900/40 to-primary-900/70" />
@@ -52,7 +53,10 @@ export function Hero() {
             <a href="#properties" className="btn-gold">
               View Properties
             </a>
-            <a href="#contact" className="btn-secondary border-white text-white hover:bg-white hover:text-primary-900">
+            <a
+              href="#contact"
+              className="btn-secondary border-white text-white hover:bg-white hover:text-primary-900"
+            >
               Schedule a Consultation
             </a>
           </div>
@@ -64,5 +68,5 @@ export function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

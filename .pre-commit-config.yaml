@@ -1,0 +1,75 @@
+# Pre-commit hooks configuration
+# Install: pip install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+
+repos:
+  # Standard hooks for file hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+        args: [--unsafe]  # Allow custom yaml tags in docker-compose
+      - id: check-json
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: mixed-line-endings
+        args: [--fix=lf]
+
+  # ESLint for JavaScript/TypeScript linting
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.57.0
+    hooks:
+      - id: eslint
+        files: ^apps/web/.*\.(js|jsx|ts|tsx)$
+        types: [file]
+        additional_dependencies:
+          - eslint@8.57.0
+          - typescript@5.6.3
+          - "@typescript-eslint/eslint-plugin@7.18.0"
+          - "@typescript-eslint/parser@7.18.0"
+          - eslint-config-next@14.2.35
+          - eslint-config-prettier@9.1.0
+        args: [--fix, --config, apps/web/.eslintrc.json]
+
+  # Prettier for code formatting
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        files: \.(js|jsx|ts|tsx|json|css|md|yaml|yml)$
+        exclude: ^(\.next/|node_modules/|docker/data/)
+        additional_dependencies:
+          - prettier@3.4.2
+
+  # TypeScript type checking (non-blocking initially)
+  - repo: local
+    hooks:
+      - id: typecheck
+        name: TypeScript Type Check
+        entry: bash -c 'cd apps/web && npx tsc --noEmit'
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        # Set to false initially if type errors are too strict
+        # Change to true once all type errors are fixed
+        verbose: true
+
+# Configuration
+default_language_version:
+  node: "20.10.0"
+
+# Exclude generated and vendored files
+exclude: |
+  (?x)^(
+    \.next/|
+    node_modules/|
+    docker/data/|
+    \.git/|
+    .*\.min\.js$|
+    .*\.min\.css$
+  )

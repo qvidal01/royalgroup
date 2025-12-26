@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
 const stats = [
-  { value: '$150M+', label: 'Total Sales Volume' },
-  { value: '500+', label: 'Happy Clients' },
-  { value: '15+', label: 'Years Experience' },
-  { value: '98%', label: 'Client Satisfaction' },
-]
+  { value: "$150M+", label: "Total Sales Volume" },
+  { value: "500+", label: "Happy Clients" },
+  { value: "15+", label: "Years Experience" },
+  { value: "98%", label: "Client Satisfaction" },
+];
 
 export function StatsSection() {
   return (
@@ -34,13 +34,11 @@ export function StatsSection() {
               <div className="text-4xl md:text-5xl font-heading font-bold text-gold-400 mb-2">
                 {stat.value}
               </div>
-              <div className="text-white/80 text-sm uppercase tracking-wider">
-                {stat.label}
-              </div>
+              <div className="text-white/80 text-sm uppercase tracking-wider">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

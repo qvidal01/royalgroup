@@ -1,42 +1,44 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from 'lucide-react'
+import { useState } from "react";
+import { Phone, Mail, MapPin, Clock, Send, MessageSquare } from "lucide-react";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    message: '',
-    propertyInterest: '',
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+    propertyInterest: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Send to n8n webhook for demo
     try {
-      await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
-      setSubmitted(true)
+      });
+      setSubmitted(true);
     } catch (error) {
-      console.error('Error submitting form:', error)
+      console.error("Error submitting form:", error);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <section id="contact" className="py-24 bg-luxury-cream">
@@ -48,12 +50,14 @@ export function ContactSection() {
               Get In Touch
             </p>
             <h2 className="section-heading mb-6">
-              Let's Find Your
+              Let&apos;s Find Your
               <span className="text-gold-500"> Dream Home</span>
             </h2>
             <div className="w-20 h-1 bg-gold-500 my-6" />
             <p className="text-luxury-slate text-lg leading-relaxed mb-8">
-              Ready to begin your luxury real estate journey? Whether you're buying, selling, or simply exploring your options, we're here to help. Contact us today for a personalized consultation.
+              Ready to begin your luxury real estate journey? Whether you&apos;re buying, selling,
+              or simply exploring your options, we&apos;re here to help. Contact us today for a
+              personalized consultation.
             </p>
 
             {/* Contact Details */}
@@ -64,7 +68,10 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-primary-900 mb-1">Phone</h3>
-                  <a href="tel:+15551234567" className="text-luxury-slate hover:text-gold-500 transition-colors">
+                  <a
+                    href="tel:+15551234567"
+                    className="text-luxury-slate hover:text-gold-500 transition-colors"
+                  >
                     (555) 123-4567
                   </a>
                 </div>
@@ -76,7 +83,10 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h3 className="font-medium text-primary-900 mb-1">Email</h3>
-                  <a href="mailto:jennifer@royalgroup-ev.com" className="text-luxury-slate hover:text-gold-500 transition-colors">
+                  <a
+                    href="mailto:jennifer@royalgroup-ev.com"
+                    className="text-luxury-slate hover:text-gold-500 transition-colors"
+                  >
                     jennifer@royalgroup-ev.com
                   </a>
                 </div>
@@ -89,7 +99,8 @@ export function ContactSection() {
                 <div>
                   <h3 className="font-medium text-primary-900 mb-1">Office</h3>
                   <p className="text-luxury-slate">
-                    123 Main Street, Suite 100<br />
+                    123 Main Street, Suite 100
+                    <br />
                     Evansville, IN 47708
                   </p>
                 </div>
@@ -102,7 +113,8 @@ export function ContactSection() {
                 <div>
                   <h3 className="font-medium text-primary-900 mb-1">Hours</h3>
                   <p className="text-luxury-slate">
-                    Monday - Friday: 9am - 6pm<br />
+                    Monday - Friday: 9am - 6pm
+                    <br />
                     Weekends: By Appointment
                   </p>
                 </div>
@@ -116,7 +128,8 @@ export function ContactSection() {
                 <span className="font-medium text-primary-900">AI-Powered Chat Assistant</span>
               </div>
               <p className="text-sm text-luxury-slate">
-                Have a quick question? Our AI assistant is available 24/7 to help with property inquiries, scheduling, and more.
+                Have a quick question? Our AI assistant is available 24/7 to help with property
+                inquiries, scheduling, and more.
               </p>
             </div>
           </div>
@@ -132,7 +145,7 @@ export function ContactSection() {
                   Thank You!
                 </h3>
                 <p className="text-luxury-slate">
-                  We've received your message and will get back to you within 24 hours.
+                  We&apos;ve received your message and will get back to you within 24 hours.
                 </p>
               </div>
             ) : (
@@ -171,9 +184,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-primary-900 mb-2">
-                    Email *
-                  </label>
+                  <label className="block text-sm font-medium text-primary-900 mb-2">Email *</label>
                   <input
                     type="email"
                     name="email"
@@ -185,9 +196,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-primary-900 mb-2">
-                    Phone
-                  </label>
+                  <label className="block text-sm font-medium text-primary-900 mb-2">Phone</label>
                   <input
                     type="tel"
                     name="phone"
@@ -199,7 +208,7 @@ export function ContactSection() {
 
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-primary-900 mb-2">
-                    I'm Interested In
+                    I&apos;m Interested In
                   </label>
                   <select
                     name="propertyInterest"
@@ -218,9 +227,7 @@ export function ContactSection() {
                 </div>
 
                 <div className="mb-6">
-                  <label className="block text-sm font-medium text-primary-900 mb-2">
-                    Message
-                  </label>
+                  <label className="block text-sm font-medium text-primary-900 mb-2">Message</label>
                   <textarea
                     name="message"
                     rows={4}
@@ -236,7 +243,7 @@ export function ContactSection() {
                   disabled={isSubmitting}
                   className="w-full btn-gold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
 
                 <p className="text-xs text-luxury-slate mt-4 text-center">
@@ -249,5 +256,5 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -1,29 +1,29 @@
-'use client'
+"use client";
 
-import { Award, Users, Home, Star } from 'lucide-react'
+import { Award, Users, Home, Star } from "lucide-react";
 
 const features = [
   {
     icon: Award,
-    title: 'Award-Winning Service',
-    description: 'Recognized for excellence in luxury real estate with numerous industry awards.',
+    title: "Award-Winning Service",
+    description: "Recognized for excellence in luxury real estate with numerous industry awards.",
   },
   {
     icon: Users,
-    title: 'Dedicated Team',
-    description: 'A passionate team of professionals committed to your real estate goals.',
+    title: "Dedicated Team",
+    description: "A passionate team of professionals committed to your real estate goals.",
   },
   {
     icon: Home,
-    title: 'Local Expertise',
-    description: 'Deep knowledge of the Evansville market and surrounding communities.',
+    title: "Local Expertise",
+    description: "Deep knowledge of the Evansville market and surrounding communities.",
   },
   {
     icon: Star,
-    title: 'Global Network',
-    description: 'Access to Engel & Volkers extensive worldwide network of luxury properties.',
+    title: "Global Network",
+    description: "Access to Engel & Volkers extensive worldwide network of luxury properties.",
   },
-]
+];
 
 export function AboutSection() {
   return (
@@ -58,14 +58,14 @@ export function AboutSection() {
             </h2>
             <div className="w-20 h-1 bg-gold-500 my-6" />
             <p className="text-luxury-slate text-lg leading-relaxed mb-6">
-              At Royal Group, we believe that finding your dream home should be an exceptional experience.
-              With over 15 years of expertise in the luxury real estate market, we bring unparalleled
-              knowledge, dedication, and personal service to every client relationship.
+              At Royal Group, we believe that finding your dream home should be an exceptional
+              experience. With over 15 years of expertise in the luxury real estate market, we bring
+              unparalleled knowledge, dedication, and personal service to every client relationship.
             </p>
             <p className="text-luxury-slate text-lg leading-relaxed mb-8">
               As part of the prestigious Engel & Volkers network, we combine local expertise with
-              global reach, offering you access to an exclusive portfolio of premium properties
-              and a worldwide network of discerning buyers and sellers.
+              global reach, offering you access to an exclusive portfolio of premium properties and
+              a worldwide network of discerning buyers and sellers.
             </p>
 
             {/* Features Grid */}
@@ -90,5 +90,5 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

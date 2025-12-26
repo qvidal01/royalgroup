@@ -1,49 +1,49 @@
-'use client'
+"use client";
 
-import { Bed, Bath, Square, MapPin, ArrowRight } from 'lucide-react'
+import { Bed, Bath, Square, MapPin, ArrowRight } from "lucide-react";
 
 const properties = [
   {
     id: 1,
-    title: 'Lakefront Estate with Private Dock',
+    title: "Lakefront Estate with Private Dock",
     price: 2450000,
     beds: 5,
     baths: 4.5,
     sqft: 6500,
-    address: 'Lakeshore Drive, Evansville',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+    address: "Lakeshore Drive, Evansville",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80",
     featured: true,
   },
   {
     id: 2,
-    title: 'Modern Downtown Penthouse',
+    title: "Modern Downtown Penthouse",
     price: 1850000,
     beds: 3,
     baths: 3,
     sqft: 4200,
-    address: 'Main Street, Evansville',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+    address: "Main Street, Evansville",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
     featured: true,
   },
   {
     id: 3,
-    title: 'Historic Victorian Mansion',
+    title: "Historic Victorian Mansion",
     price: 1650000,
     beds: 6,
     baths: 5,
     sqft: 7800,
-    address: 'Heritage Lane, Newburgh',
-    image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80',
+    address: "Heritage Lane, Newburgh",
+    image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80",
     featured: true,
   },
-]
+];
 
 function formatPrice(price: number) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
     maximumFractionDigits: 0,
-  }).format(price)
+  }).format(price);
 }
 
 export function FeaturedProperties() {
@@ -58,17 +58,15 @@ export function FeaturedProperties() {
           <h2 className="section-heading">Featured Properties</h2>
           <div className="divider-gold" />
           <p className="section-subheading mx-auto">
-            Discover our curated selection of exceptional homes, each offering unique luxury and lifestyle opportunities.
+            Discover our curated selection of exceptional homes, each offering unique luxury and
+            lifestyle opportunities.
           </p>
         </div>
 
         {/* Properties Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
-            <div
-              key={property.id}
-              className="luxury-card group cursor-pointer"
-            >
+            <div key={property.id} className="luxury-card group cursor-pointer">
               {/* Image */}
               <div className="relative h-72 overflow-hidden">
                 <img
@@ -81,9 +79,7 @@ export function FeaturedProperties() {
                   Featured
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="w-full btn-gold text-sm">
-                    View Details
-                  </button>
+                  <button className="w-full btn-gold text-sm">View Details</button>
                 </div>
               </div>
 
@@ -130,5 +126,5 @@ export function FeaturedProperties() {
         </div>
       </div>
     </section>
-  )
+  );
 }
