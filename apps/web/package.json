@@ -12,7 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run lint && npm run typecheck && npm run format:check",
-    "prepare": "cd ../.. && husky apps/web/.husky || true"
+    "prepare": "cd ../.. && git config core.hooksPath .husky || true"
   },
   "dependencies": {
     "clsx": "^2.1.1",
